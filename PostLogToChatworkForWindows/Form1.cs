@@ -30,6 +30,7 @@ namespace PostLogToChatworkForWindows
 
             textBoxLogFilePath.Text = Properties.Settings.Default.logFilePath;
             textBoxFilter.Text = Properties.Settings.Default.filter;
+            textBoxPrefix.Text = Properties.Settings.Default.prefix;
             textBoxApiToken.Text = Properties.Settings.Default.apiToken;
             textBoxRoomId.Text = Properties.Settings.Default.roomId;
         }
@@ -101,10 +102,15 @@ namespace PostLogToChatworkForWindows
                         if (!string.IsNullOrEmpty(e.Data) && (string.IsNullOrEmpty(textBoxFilter.Text) || Regex.IsMatch(e.Data, textBoxFilter.Text)))
                         {
                             string requestUri = $"https://api.chatwork.com/v2/rooms/{textBoxRoomId.Text}/messages";
-                            HttpResponseMessage response = await client.PostAsync(requestUri, new FormUrlEncodedContent(new Dictionary<string, string> { { "body", e.Data } }));
+                            string message = e.Data;
+                            if (!string.IsNullOrEmpty(textBoxPrefix.Text))
+                                message = $"{textBoxPrefix.Text}{message}";
+                            HttpResponseMessage response = await client.PostAsync(requestUri, new FormUrlEncodedContent(new Dictionary<string, string> { { "body", message } }));
                             Stream stream = await response.Content.ReadAsStreamAsync();
                             DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(MessagesResponce));
                             MessagesResponce messagesResponce = (MessagesResponce)serializer.ReadObject(stream);
+                            stream.Close();
+                            await response.Content.ReadAsStreamAsync();
 
                             requestUri = $"https://api.chatwork.com/v2/rooms/{textBoxRoomId.Text}/messages/unread";
                             await client.PostAsync(requestUri, new FormUrlEncodedContent(new Dictionary<string, string> { { "message_id", messagesResponce.messageID } }));
@@ -125,6 +131,7 @@ namespace PostLogToChatworkForWindows
         {
             Properties.Settings.Default.logFilePath = textBoxLogFilePath.Text;
             Properties.Settings.Default.filter = textBoxFilter.Text;
+            Properties.Settings.Default.prefix = textBoxPrefix.Text;
             Properties.Settings.Default.apiToken = textBoxApiToken.Text;
             Properties.Settings.Default.roomId = textBoxRoomId.Text;
             Properties.Settings.Default.Save();

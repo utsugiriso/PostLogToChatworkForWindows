@@ -39,6 +39,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.textBoxPrefix = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // openFileDialog1
@@ -85,7 +87,7 @@
             // 
             this.textBoxApiToken.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxApiToken.Location = new System.Drawing.Point(94, 62);
+            this.textBoxApiToken.Location = new System.Drawing.Point(94, 87);
             this.textBoxApiToken.Name = "textBoxApiToken";
             this.textBoxApiToken.Size = new System.Drawing.Size(518, 19);
             this.textBoxApiToken.TabIndex = 4;
@@ -94,7 +96,7 @@
             // 
             this.textBoxRoomId.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxRoomId.Location = new System.Drawing.Point(94, 87);
+            this.textBoxRoomId.Location = new System.Drawing.Point(94, 112);
             this.textBoxRoomId.Name = "textBoxRoomId";
             this.textBoxRoomId.Size = new System.Drawing.Size(518, 19);
             this.textBoxRoomId.TabIndex = 5;
@@ -102,7 +104,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(30, 65);
+            this.label3.Location = new System.Drawing.Point(30, 115);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(58, 12);
             this.label3.TabIndex = 6;
@@ -132,7 +134,7 @@
             // 
             this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.button2.Location = new System.Drawing.Point(12, 112);
+            this.button2.Location = new System.Drawing.Point(12, 137);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(600, 23);
             this.button2.TabIndex = 9;
@@ -140,11 +142,31 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
+            // textBoxPrefix
+            // 
+            this.textBoxPrefix.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxPrefix.Location = new System.Drawing.Point(94, 62);
+            this.textBoxPrefix.Name = "textBoxPrefix";
+            this.textBoxPrefix.Size = new System.Drawing.Size(518, 19);
+            this.textBoxPrefix.TabIndex = 10;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(53, 65);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(35, 12);
+            this.label5.TabIndex = 11;
+            this.label5.Text = "Prefix";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(624, 142);
+            this.ClientSize = new System.Drawing.Size(624, 173);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.textBoxPrefix);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label4);
@@ -156,7 +178,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBoxLogFilePath);
             this.Name = "Form1";
-            this.Text = "PostLogToChatworkForWindows";
+            this.Text = "PostLogToChatworkForWindows v1.0.1";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -175,6 +197,8 @@
         private System.Windows.Forms.TextBox textBoxApiToken;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.TextBox textBoxPrefix;
+        private System.Windows.Forms.Label label5;
     }
 }
 

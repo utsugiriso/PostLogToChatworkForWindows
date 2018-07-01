@@ -70,5 +70,17 @@ namespace PostLogToChatworkForWindows.Properties {
                 this["roomId"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string prefix {
+            get {
+                return ((string)(this["prefix"]));
+            }
+            set {
+                this["prefix"] = value;
+            }
+        }
     }
 }
