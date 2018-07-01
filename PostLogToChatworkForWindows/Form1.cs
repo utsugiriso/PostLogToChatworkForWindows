@@ -11,6 +11,7 @@ using System.IO;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
 using System.Net.Http;
+using System.Runtime.Serialization.Json;
 
 namespace PostLogToChatworkForWindows
 {
@@ -93,14 +94,20 @@ namespace PostLogToChatworkForWindows
                 powerShellProcess.StartInfo.UseShellExecute = false;
                 powerShellProcess.StartInfo.Arguments = $"& Get-Content -Path '{textBoxLogFilePath.Text}' -Tail 0 -Wait";
                 powerShellProcess.StartInfo.RedirectStandardOutput = true;
-                powerShellProcess.OutputDataReceived += new DataReceivedEventHandler((sender, e) =>
+                powerShellProcess.OutputDataReceived += new DataReceivedEventHandler(async (sender, e) =>
                 {
                     try
                     {
                         if (!string.IsNullOrEmpty(e.Data) && (string.IsNullOrEmpty(textBoxFilter.Text) || Regex.IsMatch(e.Data, textBoxFilter.Text)))
                         {
                             string requestUri = $"https://api.chatwork.com/v2/rooms/{textBoxRoomId.Text}/messages";
-                            client.PostAsync(requestUri, new FormUrlEncodedContent(new Dictionary<string, string> { { "body", e.Data } }));
+                            HttpResponseMessage response = await client.PostAsync(requestUri, new FormUrlEncodedContent(new Dictionary<string, string> { { "body", e.Data } }));
+                            Stream stream = await response.Content.ReadAsStreamAsync();
+                            DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(MessagesResponce));
+                            MessagesResponce messagesResponce = (MessagesResponce)serializer.ReadObject(stream);
+
+                            requestUri = $"https://api.chatwork.com/v2/rooms/{textBoxRoomId.Text}/messages/unread";
+                            await client.PostAsync(requestUri, new FormUrlEncodedContent(new Dictionary<string, string> { { "message_id", messagesResponce.messageID } }));
                         }
                     }
                     catch (Exception exception)
