@@ -68,11 +68,11 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(40, 40);
+            this.label2.Location = new System.Drawing.Point(11, 40);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(48, 12);
+            this.label2.Size = new System.Drawing.Size(77, 12);
             this.label2.TabIndex = 2;
-            this.label2.Text = "フィルター";
+            this.label2.Text = "メッセージFilter";
             // 
             // textBoxFilter
             // 
@@ -154,11 +154,11 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(53, 65);
+            this.label5.Location = new System.Drawing.Point(8, 65);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(35, 12);
+            this.label5.Size = new System.Drawing.Size(80, 12);
             this.label5.TabIndex = 11;
-            this.label5.Text = "Prefix";
+            this.label5.Text = "メッセージPrefix";
             // 
             // Form1
             // 
