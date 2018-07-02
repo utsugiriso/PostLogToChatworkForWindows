@@ -110,7 +110,6 @@ namespace PostLogToChatworkForWindows
                             DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(MessagesResponce));
                             MessagesResponce messagesResponce = (MessagesResponce)serializer.ReadObject(stream);
                             stream.Close();
-                            await response.Content.ReadAsStreamAsync();
 
                             requestUri = $"https://api.chatwork.com/v2/rooms/{textBoxRoomId.Text}/messages/unread";
                             await client.PostAsync(requestUri, new FormUrlEncodedContent(new Dictionary<string, string> { { "message_id", messagesResponce.messageID } }));
